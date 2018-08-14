@@ -26,9 +26,22 @@ module.exports = {
     listTeachers() {
       return database('teachers').select('*')
     },
+
+    readTeachers(id) {
+      return database('teachers').select('*').where('id', id).first()
+    },
     
     createTeachers(teacher) {
       return database('teachers').insert(teacher).returning('*')
       .then(record => record[0])
-    }
+    },
+
+    updateTeachers(id, teacher) {
+      return database('teachers').update(teacher).where('id', id).returning('*')
+      .then(record => record[0])
+    },
+    
+    deleteTeachers(id) {
+      return database('teachers').delete().where('id', id)
+    },
   }
