@@ -4,13 +4,13 @@ const router = express.Router();
 const queries = require('../queries');
 
 router.get("/", (request, response, next) => {
-    queries.listSupplies().then(supplies => {
+    queries.list("supplies").then(supplies => {
         response.json({supplies});
     }).catch(next);
 });
 
 router.get("/:id", (request, response, next) => {
-    queries.readSupplies(request.params.id).then(supplies => {
+    queries.read("supplies", request.params.id).then(supplies => {
         supplies
             ? response.json({supplies})
             : response.status(404).json({message: 'Not found'})
@@ -18,19 +18,19 @@ router.get("/:id", (request, response, next) => {
 });
 
 router.post("/", (request, response, next) => {
-    queries.createSupplies(request.body).then(supplies => {
+    queries.create("supplies", request.body).then(supplies => {
         response.status(201).json({supplies: supplies});
     }).catch(next);
 });
 
 router.delete("/:id", (request, response, next) => {
-    queries.deleteSupplies(request.params.id).then(() => {
+    queries.delete("supplies", request.params.id).then(() => {
         response.status(204).json({deleted: true});
     }).catch(next);
 });
 
 router.put("/:id", (request, response, next) => {
-    queries.updateSupplies(request.params.id, request.body).then(supplies => {
+    queries.update("supplies", request.params.id, request.body).then(supplies => {
         response.json({supplies: supplies[0]});
     }).catch(next);
 });
