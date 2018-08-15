@@ -5,6 +5,9 @@ exports.up = function(knex, Promise) {
     teachers.text('name')
     teachers.text('school')
     teachers.text('address')
+    teachers.text('email')
+    teachers.text('profile_picture')
+    teachers.boolean('logged_in')
   })
 };
 
