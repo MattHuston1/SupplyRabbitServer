@@ -9,5 +9,9 @@ exports.seed = function(knex, Promise) {
         {id: 2, name: 'Patrick Biffle', school: 'Galvanize', address:'1644 Platte Street Denver CO 80202'},
         {id: 3, name: 'Nmuta Jones', school: 'Galvanize', address:'1644 Platte Street Denver CO 80202'}
       ]);
-    });
+    })
+    .then(() => {
+    return knex.raw('ALTER SEQUENCE teachers RESTART WITH 4;');
+  })
 };
+
