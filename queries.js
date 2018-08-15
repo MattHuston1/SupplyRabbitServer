@@ -1,10 +1,29 @@
 const database = require('./database-connection')
 
+
 module.exports = {
     list(tableName) {
       return database(tableName).select('*')
     },
-
+    listPosts() {
+      return database('teachers')
+          .join(
+              'supplies',
+              'teachers.id',
+              '=',
+              'supplies.teacher_id'
+          )
+          .select(
+              'teachers.id',
+              'teachers.name',
+              'teachers.school',
+              'teachers.address',
+              'supplies.supply_name',
+              'supplies.quantity_needed',
+              'supplies.teacher_id',
+              'supplies.id'
+          );
+  },
     read(tableName, id) {
       return database(tableName).select('*').where('id', id).first()
     },
