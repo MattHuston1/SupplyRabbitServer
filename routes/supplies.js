@@ -4,7 +4,7 @@ const router = express.Router();
 const queries = require('../queries');
 
 router.get("/", (request, response, next) => {
-    queries.list("supplies").then(supplies => {
+    queries.listPosts().then(supplies => {
         response.json({supplies});
     }).catch(next);
 });
