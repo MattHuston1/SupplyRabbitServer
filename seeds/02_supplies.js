@@ -9,5 +9,8 @@ exports.seed = function(knex, Promise) {
         {id: 2, teacher_id: 2, supply_name: 'Notebooks', quantity_needed: 15},
         {id: 3, teacher_id: 3, supply_name: 'Markers', quantity_needed: 10}
       ]);
+    })
+    .then(() => {
+      return knex.raw('ALTER SEQUENCE supplies RESTART WITH 4;');
     });
 };
