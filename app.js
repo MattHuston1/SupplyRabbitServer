@@ -1,9 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const cors = require("cors");
 const teachers = require("./routes/teachers")
 const supplies = require("./routes/supplies")
 
+app.use(cors())
 app.use(bodyParser.json())
 app.use("/teachers", teachers)
 app.use("/supplies", supplies)
